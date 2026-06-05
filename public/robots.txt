@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /kyc
+Disallow: /messages
+Disallow: /tokens
+Disallow: /reset-password
+Disallow: /forgot-password
+
+Sitemap: https://vohitra-imo.com/sitemap.xml

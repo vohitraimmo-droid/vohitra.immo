@@ -1,0 +1,18 @@
+# Vohitra
+
+> Plateforme immobilière locale à Madagascar : annonces vérifiées sur site, mise en relation directe entre propriétaires et locataires, système de jetons et abonnements Pro.
+
+Vohitra publie des annonces de location et de vente (appartements, maisons, locaux commerciaux, terrains) dans les principales villes malgaches. Chaque annonce peut être vérifiée par notre équipe sur place. Les locataires débloquent les coordonnées avec des jetons ; les propriétaires peuvent booster leurs annonces.
+
+## Pages
+
+- [Accueil — recherche d'annonces](/): catalogue filtrable par ville, type de bien, prix, surface et nombre de pièces.
+- [Blog](/blog): conseils immobiliers, actualités du marché malgache et guides pratiques.
+- [Comparateur](/compare): comparer plusieurs annonces côte à côte.
+- [Conditions Générales d'Utilisation](/cgu): cadre légal de la plateforme.
+- [Connexion](/login): accès à l'espace utilisateur.
+- [Créer un compte](/signup): inscription locataire ou propriétaire.
+
+## Optional
+
+- [Mot de passe oublié](/forgot-password): réinitialisation du mot de passe.

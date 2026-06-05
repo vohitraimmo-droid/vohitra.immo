@@ -1,0 +1,1 @@
+ALTER TABLE public.site_settings ADD COLUMN IF NOT EXISTS unlock_cost_tokens integer NOT NULL DEFAULT 1;

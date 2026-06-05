@@ -1,0 +1,66 @@
+// Translations dictionary. Add keys here as you translate more pages.
+// Use dot.notation. Missing keys fall back to French.
+export const translations = {
+  fr: {
+    nav: {
+      listings: "Annonces",
+      blog: "Blog",
+      adminSpace: "Espace admin",
+      mySpace: "Mon espace",
+      messages: "Messages",
+      more: "Plus",
+      favorites: "Favoris",
+      alerts: "Alertes",
+      history: "Historique",
+      verification: "Vérification",
+      admin: "Admin",
+      user: "Utilisateur",
+      compare: "Comparer",
+      tokens: "Jetons",
+      buyTokens: "Acheter des jetons",
+      signIn: "Connexion",
+      signUp: "Inscription",
+      signOut: "Déconnexion",
+      newListing: "Nouvelle annonce",
+      myFavorites: "Mes favoris",
+      myAlerts: "Mes alertes",
+      idVerification: "Vérification d'identité",
+      menu: "Menu",
+      language: "Langue",
+    },
+  },
+  mg: {
+    nav: {
+      listings: "Trano",
+      blog: "Blaogy",
+      adminSpace: "Toeran'ny admin",
+      mySpace: "Ny toerako",
+      messages: "Hafatra",
+      more: "Hafa",
+      favorites: "Tiana",
+      alerts: "Fampandrenesana",
+      history: "Tantara",
+      verification: "Fanamarinana",
+      admin: "Admin",
+      user: "Mpampiasa",
+      compare: "Hampitahaina",
+      tokens: "Jetons",
+      buyTokens: "Hividy jetons",
+      signIn: "Hiditra",
+      signUp: "Hisoratra anarana",
+      signOut: "Hivoaka",
+      newListing: "Filazana vaovao",
+      myFavorites: "Tiako",
+      myAlerts: "Fampandrenesana ahy",
+      idVerification: "Fanamarinana mombamomba",
+      menu: "Menio",
+      language: "Fiteny",
+    },
+  },
+} as const;
+
+export type Locale = keyof typeof translations;
+export const LOCALES: { code: Locale; label: string; flag: string }[] = [
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "mg", label: "Malagasy", flag: "🇲🇬" },
+];

@@ -1,0 +1,1 @@
+ALTER TABLE public.site_settings ADD COLUMN IF NOT EXISTS free_unlocks_per_day integer NOT NULL DEFAULT 0;
