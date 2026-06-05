@@ -125,7 +125,6 @@ function PropertyPage() {
 
   const load = async () => {
     setLoading(true);
-    // Run the public queries in parallel
     const [{ data: p }, { data: ph }, { data: s }] = await Promise.all([
       supabase.from("properties").select("id, owner_id, title, description, property_type, listing_type, price, address, postal_code, city, rooms, surface, status, is_premium, premium_until, is_verified, created_at, updated_at").eq("id", id).single(),
       supabase.from("property_photos").select("url, display_order").eq("property_id", id).order("display_order"),
@@ -137,7 +136,6 @@ function PropertyPage() {
     setTokensEnabled((s as { unlock_tokens_enabled?: boolean } | null)?.unlock_tokens_enabled !== false);
     setLoading(false);
 
-    // Auth-only data: fetched in background, doesn't block first paint
     if (user) {
       void (async () => {
         try {
@@ -164,7 +162,6 @@ function PropertyPage() {
   useEffect(() => { void load(); /* eslint-disable-next-line */ }, [id, user?.id]);
   useEffect(() => { trackRecentlyViewed(id); }, [id]);
 
-  // Tracking vue (une fois par chargement, sauf si propriétaire)
   useEffect(() => {
     if (!property) return;
     if (user && property.owner_id === user.id) return;
@@ -267,10 +264,20 @@ function PropertyPage() {
                 {isSale ? "À vendre" : "À louer"}
               </span>
               {property.is_premium && (
-                <span className="bg-premium text-premium-foreground text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider">Premium</span>
+                <span
+                  style={{ backgroundColor: "oklch(0.78 0.16 75)", color: "oklch(0.20 0.015 40)" }}
+                  className="text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider"
+                >
+                  Premium
+                </span>
               )}
               {property.is_verified && (
-                <span className="bg-verified text-verified-foreground text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider">Vérifié sur site</span>
+                <span
+                  style={{ backgroundColor: "oklch(0.50 0.10 165)", color: "oklch(0.985 0.005 60)" }}
+                  className="text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider flex items-center gap-1"
+                >
+                  ✓ Vérifié sur site
+                </span>
               )}
               <span className="bg-muted text-foreground text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider">
                 {propertyTypeLabel(property.property_type)}
@@ -305,14 +312,20 @@ function PropertyPage() {
 
         <aside className="lg:sticky lg:top-28 lg:self-start">
           <div className="bg-card border border-border rounded-2xl p-6 shadow-lg">
-            {/* Bloc 1 : Prix */}
             <div className="pb-5 border-b border-border">
               <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">{isSale ? "Prix d'achat" : "Loyer mensuel"}</div>
               <div className="font-mono font-semibold text-3xl text-primary leading-none mb-1">{formatAr(property.price)}</div>
               <div className="text-xs text-muted-foreground">{priceSuffix}</div>
+              {property.is_verified && (
+                <div
+                  style={{ backgroundColor: "oklch(0.50 0.10 165 / 0.12)", color: "oklch(0.50 0.10 165)" }}
+                  className="mt-3 text-xs font-semibold px-3 py-1.5 rounded-md flex items-center gap-1.5 w-fit"
+                >
+                  ✓ Annonce vérifiée sur site par notre équipe
+                </div>
+              )}
             </div>
 
-            {/* Bloc 2 : Contact propriétaire */}
             <div className="py-5 border-b border-border">
               <h3 className="font-display text-lg italic mb-3">Contacter le propriétaire</h3>
               {unlocked && owner ? (
@@ -326,7 +339,6 @@ function PropertyPage() {
                   <p className="text-sm text-muted-foreground mb-4">
                     Coordonnées masquées. Débloquez le contact du propriétaire.
                   </p>
-                  {/* CTA PRIMAIRE */}
                   <button
                     onClick={unlockContact}
                     disabled={unlocking}
@@ -338,7 +350,6 @@ function PropertyPage() {
               )}
             </div>
 
-            {/* Bloc 3 : Actions secondaires (outline, gap-3 = 12px) */}
             <div className="py-5 border-b border-border space-y-3">
               <Link to="/visits/book/$propertyId" params={{ propertyId: id }} className="w-full min-h-11 inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg border border-border hover:bg-muted transition-colors">
                 Réserver une visite
@@ -357,7 +368,6 @@ function PropertyPage() {
               </button>
             </div>
 
-            {/* Bloc 4 : Actions tertiaires (ghost) */}
             <div className="pt-5 flex flex-col gap-2">
               <ShareButton
                 title={property.title}
@@ -442,7 +452,6 @@ function PropertyPage() {
 
       {reportOpen && <ReportPropertyDialog propertyId={id} onClose={() => setReportOpen(false)} />}
 
-      {/* Barre d'action sticky mobile — CTA principal toujours accessible (loi de Fitts) */}
       <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-background/95 backdrop-blur-md border-t border-border px-4 py-3 flex items-center gap-3 shadow-[0_-4px_12px_rgba(0,0,0,0.06)]">
         <button
           onClick={toggleFavorite}
