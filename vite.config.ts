@@ -8,12 +8,7 @@ export default defineConfig({
   plugins: [
     viteTsConfigPaths({ projects: ["./tsconfig.json"] }),
     tailwindcss(),
-    tanstackStart({
-      srcDirectory: "src",
-      server: {
-        preset: "vercel",
-      },
-    }),
+    tanstackStart({ srcDirectory: "src" }),
     viteReact(),
   ],
 });
