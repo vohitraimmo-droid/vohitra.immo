@@ -1,13 +1,5 @@
 {
   "buildCommand": "vite build",
-  "outputDirectory": ".output/public",
-  "framework": null,
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/_server/index" }
-  ],
-  "functions": {
-    ".output/server/index.mjs": {
-      "runtime": "nodejs22.x"
-    }
-  }
+  "outputDirectory": ".vercel/output",
+  "framework": null
 }
