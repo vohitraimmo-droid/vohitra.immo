@@ -1,11 +1,9 @@
 import { defineConfig } from "@tanstack/react-start/config";
 import viteTsConfigPaths from "vite-tsconfig-paths";
 
-const nitroPreset = process.env.NITRO_PRESET ?? "vercel";
-
 export default defineConfig({
   server: {
-    preset: nitroPreset,
+    preset: process.env.NITRO_PRESET ?? "vercel",
   },
   routers: {
     client: {
