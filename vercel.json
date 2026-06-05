@@ -1,4 +1,15 @@
 {
   "buildCommand": "vite build",
-  "framework": null
+  "outputDirectory": ".output/public",
+  "framework": null,
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/(.*)", "destination": "/_server/index" }
+  ],
+  "functions": {
+    ".output/server/index.mjs": {
+      "handler": ".output/server/index.mjs",
+      "runtime": "nodejs22.x"
+    }
+  }
 }
