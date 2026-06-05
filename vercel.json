@@ -1,7 +1,4 @@
 {
   "buildCommand": "vite build",
-  "framework": null,
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/dist/server/index.mjs" }
-  ]
+  "framework": null
 }
